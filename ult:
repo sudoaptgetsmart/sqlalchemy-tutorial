@@ -1,0 +1,11 @@
+[33mcommit 06eeedeee1e1771491932e136ba97c7b89655094[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: sudoaptgetsmart <96799397+sudoaptgetsmart@users.noreply.github.com>
+Date:   Mon Aug 29 14:55:43 2022 -0500
+
+    feat(root): added README
+
+[33mcommit d5d6354da72b298c684be2ae85aa8c5b79eff605[m[33m ([m[1;31msqlalchemy-tutorial/master[m[33m)[m
+Author: sudoaptgetsmart <96799397+sudoaptgetsmart@users.noreply.github.com>
+Date:   Mon Aug 29 14:32:55 2022 -0500
+
+    feat(root): initial
