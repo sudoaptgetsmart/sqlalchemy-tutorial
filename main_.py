@@ -1,7 +1,7 @@
 '''Testing SQLAlchemy'''
 import sqlalchemy
 from sqlalchemy import (Column, ForeignKey, Integer, MetaData, String, Table,
-                        create_engine, text)
+                        create_engine, insert, text, select)
 from sqlalchemy.orm import Session, declarative_base, relationship
 
 # Connect to an sqlite database using an in-memory-only database.
@@ -155,3 +155,39 @@ class Address(Base):
     def __repr__(self):
         '''Returns user's address, email address.'''
         return f"Address(id={self.id!r}, email_address={self.email_address!r})"
+
+
+# Table Reflection
+some_table = Table("some_table", metadata_obj, autoload_with=engine)
+
+# Working with Data
+# Inserting Rows with Core
+# The insert() SQL Expression Construct
+stmt = insert(user_table).values(
+    name='spongebob', fullname="Spongebob Squarepants")
+print(stmt)
+# Executing the Statement
+with engine.connect() as conn:
+    result = conn.execute(stmt)
+    conn.commit()
+# INSERT usually generates the "values" clause automatically
+with engine.connect() as conn:
+    result = conn.execute(
+        insert(user_table),
+        [
+            {"name": "sandy", "fullname": "Sandy Cheeks"},
+            {"name": "patrick", "fullname": "Patrick Star"}
+        ]
+    )
+    conn.commit()
+
+# INSERT FROM SELECT
+select_stmt = select(user_table.c.id, user_table.c.name + "aol.com")
+insert_stmt = insert(address_table).from_select(
+    ["user_id", "email_address"], select_stmt
+)
+print(insert_stmt)
+
+# INSERT RETURNING
+insert_stmt = insert(address_table).returning(address_table.c.id, address_table.c.email_address)
+print(insert_stmt)

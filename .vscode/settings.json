@@ -1,8 +1,11 @@
 {
   "cSpell.words": [
+    "autoload",
     "bindparams",
     "pysqlite",
-    "sqlalchemy"
+    "spongebob",
+    "sqlalchemy",
+    "Squarepants"
   ],
   "python.linting.pycodestyleEnabled": false,
   "python.linting.enabled": true,
